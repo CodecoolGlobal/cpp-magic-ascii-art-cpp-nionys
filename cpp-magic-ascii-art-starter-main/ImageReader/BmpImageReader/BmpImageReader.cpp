@@ -3,8 +3,7 @@
 //
 
 #include "BmpImageReader.h"
-#include "EasyBMP_BMP.h"
-#include "../../PixelArray.h"
+#include "EasyBMP.h"
 
 
 PixelArray BmpImageReader::readImage(std::string filePath, int &width, int &height) {

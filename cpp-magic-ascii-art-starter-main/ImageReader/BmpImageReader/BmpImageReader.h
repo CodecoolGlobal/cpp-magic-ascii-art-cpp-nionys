@@ -5,7 +5,7 @@
 #ifndef BMPIMAGEREADER_H
 #define BMPIMAGEREADER_H
 
-#include "iostream"
+#include <iostream>
 #include "../ImageReader.h"
 #include "../../PixelArray.h"
 
