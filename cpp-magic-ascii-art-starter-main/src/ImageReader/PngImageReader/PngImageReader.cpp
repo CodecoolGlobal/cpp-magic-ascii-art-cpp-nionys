@@ -3,6 +3,7 @@
 //
 
 #include "PngImageReader.h"
+#include "lodepng.h"
 
 PixelArray PngImageReader::readImage(const std::string &filePath) {
     return *new PixelArray{0, 0, 0};
