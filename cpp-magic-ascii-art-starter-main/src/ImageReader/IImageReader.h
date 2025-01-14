@@ -7,11 +7,11 @@
 
 #include "../PixelArray.h"
 
-class ImageReader {
+class IImageReader {
 public:
-    virtual ~ImageReader() = default;
+    virtual ~IImageReader() = default;
 
-    virtual PixelArray readImage(const std::string &filePath, int &width, int &height) = 0;
+    virtual PixelArray readImage(const std::string &filePath) = 0;
 };
 
 #endif // IMAGEREADER_H

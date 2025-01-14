@@ -6,12 +6,12 @@
 #define BMPIMAGEREADER_H
 
 #include <iostream>
-#include "../ImageReader.h"
+#include "../IImageReader.h"
 #include "../../PixelArray.h"
 
-class BmpImageReader : public ImageReader {
+class BmpImageReader : public IImageReader {
     public:
-    PixelArray readImage(const std::string &filePath, int &width, int &height) override;
+    PixelArray readImage(const std::string &filePath) override;
 };
 
 
