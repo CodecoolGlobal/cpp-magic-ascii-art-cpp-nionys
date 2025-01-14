@@ -11,7 +11,7 @@ class ImageReader {
 public:
     virtual ~ImageReader() = default;
 
-    virtual PixelArray readImage(std::string filePath, int &width, int &height) = 0;
+    virtual PixelArray readImage(const std::string &filePath, int &width, int &height) = 0;
 };
 
 #endif // IMAGEREADER_H

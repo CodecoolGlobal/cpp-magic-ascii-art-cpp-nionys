@@ -11,7 +11,7 @@
 
 class BmpImageReader : public ImageReader {
     public:
-    PixelArray readImage(std::string filePath, int &width, int &height) override;
+    PixelArray readImage(const std::string &filePath, int &width, int &height) override;
 };
 
 

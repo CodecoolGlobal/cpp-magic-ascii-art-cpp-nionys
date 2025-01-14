@@ -7,10 +7,11 @@
 
 
 class PixelArray {
-    int height;
-    int width;
-    int depth;
     unsigned char* data;
+public:
+    const int height;
+    const int width;
+    const int depth;
 
 public:
     PixelArray(int height, int width, int depth) : height(height), width(width), depth(depth), data(new unsigned char[height * width * depth]){};
@@ -23,7 +24,7 @@ public:
         data [depth * width * row + depth * column + layer] = value;
     }
 
-    unsigned char getCell(int row, int column, int layer) {
+    unsigned char getCell(int row, int column, int layer) const {
         return data [depth * width * row + depth * column + layer];
     }
 };

@@ -6,7 +6,7 @@
 #include "EasyBMP.h"
 
 
-PixelArray BmpImageReader::readImage(std::string filePath, int &width, int &height) {
+PixelArray BmpImageReader::readImage(const std::string &filePath, int &width, int &height) {
     BMP bmp;
     bmp.ReadFromFile(filePath.c_str());
     width = bmp.TellWidth();
