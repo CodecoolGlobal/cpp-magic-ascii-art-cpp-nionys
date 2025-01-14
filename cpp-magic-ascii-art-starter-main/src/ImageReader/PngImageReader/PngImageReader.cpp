@@ -4,6 +4,6 @@
 
 #include "PngImageReader.h"
 
-PixelArray PngImageReader::readImage(std::string filePath, int &width, int &height) {
+PixelArray PngImageReader::readImage(const std::string &filePath) {
     return *new PixelArray{0, 0, 0};
 }

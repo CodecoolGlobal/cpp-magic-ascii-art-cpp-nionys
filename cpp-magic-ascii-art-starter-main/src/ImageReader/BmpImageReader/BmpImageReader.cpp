@@ -5,7 +5,6 @@
 #include "BmpImageReader.h"
 #include "../../external/EasyBMP_1.06/EasyBMP.h"
 
-
 PixelArray BmpImageReader::readImage(const std::string &filePath) {
     BMP bmp;
     bmp.ReadFromFile(filePath.c_str());

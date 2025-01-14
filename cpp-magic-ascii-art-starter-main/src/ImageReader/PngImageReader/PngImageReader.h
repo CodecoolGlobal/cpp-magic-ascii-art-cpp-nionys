@@ -7,11 +7,12 @@
 #include <string>
 
 #include "../ImageReader.h"
+#include "../../PixelArray.h"
 
 class PngImageReader : public ImageReader {
     public:
-    PixelArray readImage(std::string filePath, int &width, int &height) override;
-
+public:
+    PixelArray readImage(const std::string &filePath) override;
 };
 
 
