@@ -17,4 +17,6 @@ add_executable(cpp_magic_ascii_art_cpp_nionys
         cpp-magic-ascii-art-starter-main/ImageReader/BmpImageReader/BmpImageReader.h
         cpp-magic-ascii-art-starter-main/PixelArray.cpp
         cpp-magic-ascii-art-starter-main/PixelArray.h
+        cpp-magic-ascii-art-starter-main/ImageReader/PngImageReader/PngImageReader.cpp
+        cpp-magic-ascii-art-starter-main/ImageReader/PngImageReader/PngImageReader.h
 )
