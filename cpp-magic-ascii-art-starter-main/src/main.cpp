@@ -6,6 +6,7 @@
 #include <iostream>
 #include <utility>
 
+#include "Grayscale.h"
 #include "PixelArray.h"
 #include "./ImageReader/BmpImageReader/BmpImageReader.h"
 
@@ -17,17 +18,14 @@ int main(int argc, char **argv) {
 
     BmpImageReader bmpImageReader;
 
-    PixelArray array = bmpImageReader.readImage("../pics/test2.bmp");
-    // for (int i = 0; i < height; i++) {
-    //     for (int j = 0; j < width; j++) {
-    //         for (int k = 0; k < 3; k++) {
-    //             std::cout << +array.getCell(i, j, k) << " ";
-    //         }
-    //         cout << ",";
-    //     }
-    //     cout << endl;
-    // }
-
     Grayscale gs{"@#8&o:*. "};
-    gs.convert(array);
+    PixelArray array = bmpImageReader.readImage("../pics/test2.bmp");
+    PixelArray grayArray = gs.convert(array);
+    for (int r = 0; r < grayArray.height; r++) {
+        for (int c = 0; c < grayArray.width; c++) {
+            std::cout << grayArray.getCell(r, c, 1);
+        }
+        cout << endl;
+    }
+
 }
