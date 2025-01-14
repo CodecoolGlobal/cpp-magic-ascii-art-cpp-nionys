@@ -18,12 +18,10 @@ private:
 
 public:
     explicit Grayscale(std::string characterSet): characterSet(std::move(characterSet)) {}
-
-    static double convertToGrayValue(const unsigned char &red, const unsigned char &green, const unsigned char &blue);
-
-    [[nodiscard]] char getCharByGrayscaleValue(const double &value) const;
-
     [[nodiscard]] PixelArray convert(const PixelArray &array) const;
+private:
+    static double convertToGrayValue(const unsigned char &red, const unsigned char &green, const unsigned char &blue);
+    [[nodiscard]] char getCharByGrayscaleValue(const double &value) const;
 };
 
 #endif //GRAYSCALE_H

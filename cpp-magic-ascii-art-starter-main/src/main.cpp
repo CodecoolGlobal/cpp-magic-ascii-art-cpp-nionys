@@ -1,10 +1,9 @@
 //
 // Created by Patrik on 13/01/2025.
 //
-#include <filesystem>
 
+#include <fstream>
 #include <iostream>
-#include <utility>
 
 #include "Grayscale.h"
 #include "PixelArray.h"
@@ -21,11 +20,19 @@ int main(int argc, char **argv) {
     Grayscale gs{"@#8&o:*. "};
     PixelArray array = bmpImageReader.readImage("../pics/test2.bmp");
     PixelArray grayArray = gs.convert(array);
-    for (int r = 0; r < grayArray.height; r++) {
-        for (int c = 0; c < grayArray.width; c++) {
-            std::cout << grayArray.getCell(r, c, 1);
-        }
-        cout << endl;
+
+    ofstream outFile("asd.txt");
+    if (!outFile.is_open()) {
+        throw runtime_error("Error opening file");
     }
+    for (int r = 0; r < grayArray.height; r++) {
+        // if (r>12) break;
+        for (int c = 0; c < grayArray.width; c++) {
+            // if (c>12) break;
+            outFile << grayArray.getCell(r, c, 0);
+        }
+        outFile << endl;
+    }
+    outFile.close();
 
 }
