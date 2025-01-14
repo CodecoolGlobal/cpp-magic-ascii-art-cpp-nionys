@@ -11,11 +11,14 @@ public:
     const int height;
     const int width;
     const int depth;
+
 private:
-    unsigned char* data;
+    unsigned char* data{};
 
 public:
-    PixelArray(const int height, const int width, const int depth) : height(height), width(width), depth(depth), data(new unsigned char[height * width * depth]){};
+    PixelArray(const int height, const int width, const int depth) : height(height), width(width), depth(depth),
+                                                                     data(new unsigned char[height * width * depth]) {
+    };
 
     ~PixelArray() {
         delete[] data;
@@ -23,11 +26,13 @@ public:
 
     // ReSharper disable once CppMemberFunctionMayBeConst
     void setCell(const int &row, const int &column, const int &layer, const unsigned char &value) {
-        data [depth * width * row + depth * column + layer] = value;
+        int idx = depth * width * row + depth * column + layer;
+        data[idx] = value;
     }
 
     [[nodiscard]] unsigned char getCell(const int &row, const int &column, const int &layer) const {
-        return data [depth * width * row + depth * column + layer];
+        int idx = depth * width * row + depth * column + layer;
+        return data[idx];
     }
 };
 

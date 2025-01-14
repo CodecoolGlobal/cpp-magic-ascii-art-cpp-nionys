@@ -4,13 +4,19 @@
 
 #include "Grayscale.h"
 
+#include <cmath>
+#include <stdexcept>
+
 double Grayscale::convertToGrayValue(const unsigned char &red, const unsigned char &green, const unsigned char &blue) {
     return WEIGHT_RED * red + WEIGHT_GREEN * green + WEIGHT_BLUE * blue;
 }
 
 char Grayscale::getCharByGrayscaleValue(const double &value) const {
     const double maxValue = convertToGrayValue(255, 255, 255);
-    const int idx = static_cast<int>(value / maxValue * characterSet.size());
+    int idx = value / maxValue * characterSet.size();
+    if (idx >= characterSet.size()) {
+        idx = characterSet.size() - 1;
+    }
     return characterSet[idx];
 }
 
@@ -25,7 +31,7 @@ PixelArray Grayscale::convert(const PixelArray &array) const {
                 array.getCell(r, c, 2)
             );
             const char asciiChar = getCharByGrayscaleValue(grayPixelValue);
-            grayArray.setCell(r, c, 1, asciiChar);
+            grayArray.setCell(r, c, 0, asciiChar);
         }
     }
     return grayArray;
