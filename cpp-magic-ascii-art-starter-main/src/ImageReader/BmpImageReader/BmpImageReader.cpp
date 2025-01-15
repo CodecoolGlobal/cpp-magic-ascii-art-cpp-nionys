@@ -3,19 +3,25 @@
 //
 
 #include "BmpImageReader.h"
-#include "../../external/EasyBMP_1.06/EasyBMP.h"
+#include "EasyBMP.h"
 
 
-PixelArray BmpImageReader::readImage(const std::string &filePath) {
+PixelArray<Color> BmpImageReader::readImage(const std::string &filePath) {
     BMP bmp;
-    bmp.ReadFromFile(filePath.c_str());
-    PixelArray array(bmp.TellHeight(), bmp.TellWidth(), 3);
+    bool result = bmp.ReadFromFile(filePath.c_str());
+    if (!result) {
+        throw std::runtime_error("Error reading BMP file: "+filePath);
+    }
+    PixelArray<Color> array(bmp.TellHeight(), bmp.TellWidth());
 
-    for (int r = 0; r < array.height; r++) {
-        for (int c = 0; c < array.width; c++) {
-            array.setCell(r, c, 0, bmp.GetPixel(c, r).Red);
-            array.setCell(r, c, 1, bmp.GetPixel(c, r).Green);
-            array.setCell(r, c, 2, bmp.GetPixel(c, r).Blue);
+    for (int r = 0; r < array.getHeight(); r++) {
+        for (int c = 0; c < array.getWidth(); c++) {
+            Color color{
+                bmp.GetPixel(c, r).Red,
+                bmp.GetPixel(c, r).Green,
+                bmp.GetPixel(c, r).Blue,
+            };
+            array.setCell(r, c, color);
         }
     }
     return  array;
