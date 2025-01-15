@@ -12,6 +12,8 @@ public:
     const int width;
     const int depth;
 
+
+//Colour class/struct wiht fields: green, blue, red -->
 private:
     unsigned char* data{};
 

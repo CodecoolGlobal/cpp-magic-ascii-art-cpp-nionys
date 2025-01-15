@@ -15,9 +15,10 @@ PixelArray PngImageReader::readImage(const std::string &filePath) {
 
     PixelArray pixelArray = PixelArray{static_cast<int>(height), static_cast<int>(width), 3};
 
-    for (int i = 0; i < height; i++) {
-        std::cout << +current << " ";
-    }
+    for (int row = 0; row < height; row++) {
+        for (int col = 0; col < width; col++) {
 
+        }
+    }
     return pixelArray;
 }
