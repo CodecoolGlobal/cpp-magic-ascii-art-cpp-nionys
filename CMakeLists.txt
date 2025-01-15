@@ -18,4 +18,7 @@ add_executable(cpp_magic_ascii_art_cpp_nionys
         cpp-magic-ascii-art-starter-main/src/PixelArray.h
         cpp-magic-ascii-art-starter-main/src/Grayscale.h
         cpp-magic-ascii-art-starter-main/src/Grayscale.cpp
+        cpp-magic-ascii-art-starter-main/src/external/JpegDecoder/jpegDecoder.h
+        cpp-magic-ascii-art-starter-main/src/ImageReader/JpegReader/JpegReader.cpp
+        cpp-magic-ascii-art-starter-main/src/ImageReader/JpegReader/JpegReader.h
 )

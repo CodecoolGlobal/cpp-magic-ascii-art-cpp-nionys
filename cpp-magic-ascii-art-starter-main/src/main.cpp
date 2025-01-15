@@ -5,9 +5,10 @@
 #include <fstream>
 #include <iostream>
 
-#include "Grayscale.h"
-#include "PixelArray.h"
 #include "./ImageReader/BmpImageReader/BmpImageReader.h"
+#include "Grayscale.h"
+#include "ImageReader/JpegReader/JpegReader.h"
+#include "PixelArray.h"
 
 using namespace std;
 
@@ -16,9 +17,11 @@ int main(int argc, char **argv) {
     cout << "Hello World!" << endl;
 
     BmpImageReader bmpImageReader;
+    JpegReader jpeg_reader;
+
 
     Grayscale gs{"@#8&o:*. "};
-    PixelArray array = bmpImageReader.readImage("../pics/test2.bmp");
+    PixelArray array = jpeg_reader.readImage("../pics/test2.jpg");
     PixelArray grayArray = gs.convert(array);
 
     ofstream outFile("asd.txt");
