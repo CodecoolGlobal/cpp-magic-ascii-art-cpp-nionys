@@ -4,7 +4,10 @@
 
 #include "JpegReader.h"
 #include <sstream>
-PixelArray JpegReader::readImage(const std::string &filePath) {
+
+#include "external/JpegDecoder/JpegDecoder.h"
+
+PixelArray<Color> JpegReader::readImage(const std::string &filePath) {
     std::ifstream inputsream = std::ifstream(filePath, std::ios::binary);
     std::stringstream ss;
     ss << inputsream.rdbuf();
@@ -13,13 +16,15 @@ PixelArray JpegReader::readImage(const std::string &filePath) {
     unsigned char *jpegArray = jpegDecoder.GetImage();
     int width = jpegDecoder.GetWidth();
     int height = jpegDecoder.GetHeight();
-    PixelArray array(width, height, 3);
-    int a;
-    for (int j = 0; j < width; j++) {
-        for (int i = 0; i < width; i++) {
-            for (int k = 0; k < 3; k++) {
-                array.setCell(i, j, k, jpegArray[a++]);
-            }
+    PixelArray<Color> array(height, width);
+    int a{0};
+    for (int r = 0; r < height; r++) {
+        for (int c = 0; c < width; c++) {
+            array.setCell(r, c, Color(
+                jpegArray[a++],
+                jpegArray[a++],
+                jpegArray[a++]
+                ));
         }
     }
     return array;

@@ -13,21 +13,19 @@ add_executable(cpp_magic_ascii_art_cpp_nionys
         cpp-magic-ascii-art-starter-main/src/external/EasyBMP_1.06/EasyBMP_BMP.h
         cpp-magic-ascii-art-starter-main/src/external/EasyBMP_1.06/EasyBMP_DataStructures.h
         cpp-magic-ascii-art-starter-main/src/external/EasyBMP_1.06/EasyBMP_VariousBMPutilities.h
+        cpp-magic-ascii-art-starter-main/src/external/JpegDecoder/jpegDecoder.h
         cpp-magic-ascii-art-starter-main/src/ImageReader/IImageReader.h
         cpp-magic-ascii-art-starter-main/src/ImageReader/BmpImageReader/BmpImageReader.cpp
         cpp-magic-ascii-art-starter-main/src/ImageReader/BmpImageReader/BmpImageReader.h
-        cpp-magic-ascii-art-starter-main/src/PixelArray.h
+        cpp-magic-ascii-art-starter-main/src/ImageReader/JpegReader/JpegReader.cpp
+        cpp-magic-ascii-art-starter-main/src/ImageReader/JpegReader/JpegReader.h
         cpp-magic-ascii-art-starter-main/src/pipeline/Grayscale.h
         cpp-magic-ascii-art-starter-main/src/pipeline/Grayscale.cpp
         cpp-magic-ascii-art-starter-main/src/pipeline/AsciiArtifier.h
         cpp-magic-ascii-art-starter-main/src/pipeline/AsciiArtifier.cpp
-        cpp-magic-ascii-art-starter-main/src/util/parseUtil.h
         cpp-magic-ascii-art-starter-main/src/pipeline/imageConverter.cpp
         cpp-magic-ascii-art-starter-main/src/pipeline/imageConverter.h
         cpp-magic-ascii-art-starter-main/src/util/fileUtil.h
-        cpp-magic-ascii-art-starter-main/src/Grayscale.h
-        cpp-magic-ascii-art-starter-main/src/Grayscale.cpp
-        cpp-magic-ascii-art-starter-main/src/external/JpegDecoder/jpegDecoder.h
-        cpp-magic-ascii-art-starter-main/src/ImageReader/JpegReader/JpegReader.cpp
-        cpp-magic-ascii-art-starter-main/src/ImageReader/JpegReader/JpegReader.h
+        cpp-magic-ascii-art-starter-main/src/util/parseUtil.h
+        cpp-magic-ascii-art-starter-main/src/PixelArray.h
 )

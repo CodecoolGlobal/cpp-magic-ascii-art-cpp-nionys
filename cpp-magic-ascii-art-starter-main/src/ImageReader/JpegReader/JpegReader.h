@@ -6,7 +6,6 @@
 #define JPEGREADER_H
 #include <string>
 #include <fstream>
-#include "../../external/JpegDecoder/JpegDecoder.h"
 #include "../IImageReader.h"
 
 
@@ -14,7 +13,7 @@ class JpegReader: public IImageReader {
     std::ifstream buffer;
 public:
 
-    PixelArray readImage(const std::string &filePath) override;
+    PixelArray<Color> readImage(const std::string &filePath) override;
 };
 
 

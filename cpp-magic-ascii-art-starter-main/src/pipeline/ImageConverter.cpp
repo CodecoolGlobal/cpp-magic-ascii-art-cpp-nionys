@@ -5,6 +5,7 @@
 #include "imageConverter.h"
 #include "ImageReader/IImageReader.h"
 #include "ImageReader/BmpImageReader/BmpImageReader.h"
+#include "ImageReader/JpegReader/JpegReader.h"
 
 std::string ImageConverter::convert(const int height, const int width) {
     if (!isLoaded) throw std::runtime_error("state exception");
@@ -19,7 +20,7 @@ std::string ImageConverter::convert() {
 
 void ImageConverter::load(std::string imagePath) {
     try {
-        IImageReader* imageReader= new BmpImageReader();
+        IImageReader* imageReader= new JpegReader();
         rgbArray = imageReader->readImage(imagePath);
         isLoaded = true;
     } catch (std::exception& e) {
