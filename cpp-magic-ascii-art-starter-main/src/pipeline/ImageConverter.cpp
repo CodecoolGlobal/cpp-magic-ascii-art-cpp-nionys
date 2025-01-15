@@ -20,11 +20,27 @@ std::string ImageConverter::convert() {
 
 void ImageConverter::load(std::string imagePath) {
     try {
-        IImageReader* imageReader= new JpegReader();
+        std::string fileExtension = imagePath.substr(imagePath.find_last_of(".") + 1);
+        IImageReader* imageReader = nullptr;
+
+        if (fileExtension == "bmp") {
+            imageReader = new BmpImageReader();
+        } else if (fileExtension == "jpg") {
+            imageReader = new JpegReader();
+        } /*else if (fileExtension == "png") {
+            imageReader = new PngImageReader();
+        }*/ else {
+            throw std::runtime_error("Unsupported file format: " + fileExtension);
+        }
+
         rgbArray = imageReader->readImage(imagePath);
         isLoaded = true;
+
+        delete imageReader;
     } catch (std::exception& e) {
         isLoaded = false;
         throw e;
     }
 }
+
+
