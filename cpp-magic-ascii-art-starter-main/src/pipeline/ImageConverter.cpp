@@ -3,9 +3,10 @@
 //
 
 #include "imageConverter.h"
-#include "ImageReader/IImageReader.h"
 #include "ImageReader/BmpImageReader/BmpImageReader.h"
+#include "ImageReader/IImageReader.h"
 #include "ImageReader/JpegReader/JpegReader.h"
+#include "ImageReader/PngImageReader/PngImageReader.h"
 
 std::string ImageConverter::convert(const int height, const int width) {
     if (!isLoaded) throw std::runtime_error("state exception");
@@ -30,9 +31,9 @@ void ImageConverter::changeImageReaderToMatchFile(std::string fileName) {
         imageReader = new BmpImageReader();
     } else if (fileExtension == "jpg") {
         imageReader = new JpegReader();
-    } /*else if (fileExtension == "png") {
+    } else if (fileExtension == "png") {
         imageReader = new PngImageReader();
-    }*/ else {
+    } else {
         throw std::runtime_error("Unsupported file format: " + fileExtension);
     }
 

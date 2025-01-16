@@ -4,17 +4,19 @@
 
 #include <fstream>
 #include <iostream>
-#include <utility>
 #include <string>
+#include <utility>
 
-#include "util/parseUtil.h"
 #include "pipeline/ImageConverter.h"
 #include "util/fileUtil.h"
+#include "util/parseUtil.h"
 
 #define DEFAULT_RESOLUTION (-1)
 #define SOURCE_FOLDER_PATH "../pics/"
 
-using namespace std;
+
+
+        using namespace std;
 
 struct InputArgs {
     const string sourceFile, targetFile;
@@ -22,15 +24,16 @@ struct InputArgs {
     const int targetHeight, targetWidth;
 
     // defined constructor to prevent incomplete initialization
-    InputArgs(string sourceFile, string targetFile, const int targetHeight,
-              const int targetWidth): sourceFile(std::move(sourceFile)),
-                                                             targetFile(std::move(targetFile)),
-                                                             targetHeight(targetHeight), targetWidth(targetWidth) {
-    }
+
+    InputArgs(string sourceFile, string targetFile, const int targetHeight, const int targetWidth) :
+        sourceFile(std::move(sourceFile)), targetFile(std::move(targetFile)), targetHeight(targetHeight),
+        targetWidth(targetWidth) {}
 };
 
 InputArgs parseArgs(const int argc, char **argv) {
-    if (!(argc & 1)) throw invalid_argument("unpaired argument");
+    if (!(argc & 1))
+        throw invalid_argument("unpaired argument");
+
 
     string sourceFile, targetFile;
     int targetHeight{DEFAULT_RESOLUTION}, targetWidth{DEFAULT_RESOLUTION};
@@ -54,21 +57,26 @@ InputArgs parseArgs(const int argc, char **argv) {
 }
 
 int main(int argc, char **argv) {
-    InputArgs testArgs[] = {
-    {"test1.jpg", "jpg_1.txt", -1, -1},
-    {"test2.jpg", "jpg_2.txt", -1, -1},
-    {"test1.bmp", "bmp_1.txt", -1, -1},
-    {"test2.bmp", "bmp_2.txt", -1, -1}
+
+
+    InputArgs testArgs[] = {{"test1.jpg", "jpg_1.txt", -1, -1},
+                            {"test2.jpg", "jpg_2.txt", -1, -1},
+                            {"test1.bmp", "bmp_1.txt", -1, -1},
+                            {"test2.bmp", "bmp_2.txt", -1, -1},
+                            {"test1.png", "png_1.txt", -1, -1},
+                            {"test2.png", "png_2.txt", -1, -1}
+
     };
-    for (const InputArgs& args : testArgs) {
+    for (const InputArgs &args: testArgs) {
         try {
             // InputArgs args = parseArgs(argc, argv);
 
             ImageConverter imageConverter;
             imageConverter.load(SOURCE_FOLDER_PATH + args.sourceFile);
-            const string asciiArt = (args.targetHeight != DEFAULT_RESOLUTION && args.targetWidth != DEFAULT_RESOLUTION) ?
-                imageConverter.convert(args.targetHeight, args.targetWidth) :
-                imageConverter.convert();
+            const string asciiArt = (args.targetHeight != DEFAULT_RESOLUTION && args.targetWidth != DEFAULT_RESOLUTION)
+                                            ? imageConverter.convert(args.targetHeight, args.targetWidth)
+                                            : imageConverter.convert();
+
 
             writeToFile(args.targetFile, asciiArt);
         } catch (const exception &e) {
@@ -76,6 +84,5 @@ int main(int argc, char **argv) {
             system("pause");
             exit(1);
         }
-
     }
 }

@@ -12,8 +12,11 @@ add_executable(cpp_magic_ascii_art_cpp_nionys
         cpp-magic-ascii-art-starter-main/src/external/EasyBMP_1.06/EasyBMP.h
         cpp-magic-ascii-art-starter-main/src/external/EasyBMP_1.06/EasyBMP_BMP.h
         cpp-magic-ascii-art-starter-main/src/external/EasyBMP_1.06/EasyBMP_DataStructures.h
+        cpp-magic-ascii-art-starter-main/src/external/lodepng/lodepng.cpp
+        cpp-magic-ascii-art-starter-main/src/external/lodepng/lodepng.h
         cpp-magic-ascii-art-starter-main/src/external/EasyBMP_1.06/EasyBMP_VariousBMPutilities.h
         cpp-magic-ascii-art-starter-main/src/external/JpegDecoder/jpegDecoder.h
+        cpp-magic-ascii-art-starter-main/src/ImageReader/IImageReader.h
         cpp-magic-ascii-art-starter-main/src/ImageReader/IImageReader.h
         cpp-magic-ascii-art-starter-main/src/ImageReader/BmpImageReader/BmpImageReader.cpp
         cpp-magic-ascii-art-starter-main/src/ImageReader/BmpImageReader/BmpImageReader.h
@@ -27,5 +30,9 @@ add_executable(cpp_magic_ascii_art_cpp_nionys
         cpp-magic-ascii-art-starter-main/src/pipeline/imageConverter.h
         cpp-magic-ascii-art-starter-main/src/util/fileUtil.h
         cpp-magic-ascii-art-starter-main/src/util/parseUtil.h
+        cpp-magic-ascii-art-starter-main/src/ImageReader/PngImageReader/PngImageReader.cpp
+        cpp-magic-ascii-art-starter-main/src/ImageReader/PngImageReader/PngImageReader.h
         cpp-magic-ascii-art-starter-main/src/PixelArray.h
+
+
 )
