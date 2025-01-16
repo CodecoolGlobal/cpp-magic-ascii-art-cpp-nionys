@@ -12,7 +12,6 @@
 class JpegReader: public IImageReader {
     std::ifstream buffer;
 public:
-
     PixelArray<Color> readImage(const std::string &filePath) override;
 };
 

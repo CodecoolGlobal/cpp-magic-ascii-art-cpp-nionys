@@ -51,28 +51,29 @@ InputArgs parseArgs(const int argc, char **argv) {
         } else if (key == "-width") {
             targetWidth = parseInt(value);
         } else {
-            throw invalid_argument("unknown option");
+            throw invalid_argument("unknown option" + key);
         }
     }
     return {sourceFile, targetFile, targetHeight, targetWidth};
 }
 
 int main(int argc, char **argv) {
-    InputArgs testArgs[] = {
-        {"test1.jpg", "jpg_1.txt", -1, -1},
-        {"test2.jpg", "jpg_2.txt", -1, -1},
-        {"test1.bmp", "bmp_1.txt", -1, -1},
-        {"test2.bmp", "bmp_2.txt", -1, -1},
-        {"test1.png", "png_1.txt", -1, -1},
-        {"test2.png", "png_2.txt", -1, -1},
-        {"test1.bmp", "bmp_1_40x40.txt", 40, 40},
-        {"test2.bmp", "bmp_2_40x100.txt", 40, 100}
-
-
-    };
-    for (const InputArgs &args: testArgs) {
+    for (int i = 0; i < argc; i++) {
+        std::cout<<argv[i]<<endl;
+    }
+    // InputArgs testArgs[] = {
+    //     {"test1.jpg", "jpg_1.txt", -1, -1},
+    //     {"test2.jpg", "jpg_2.txt", -1, -1},
+    //     {"test1.bmp", "bmp_1.txt", -1, -1},
+    //     {"test2.bmp", "bmp_2.txt", -1, -1},
+    //     {"test1.png", "png_1.txt", -1, -1},
+    //     {"test2.png", "png_2.txt", -1, -1},
+    //     {"test1.bmp", "bmp_1_40x40.txt", 40, 40},
+    //     {"test2.bmp", "bmp_2_40x100.txt", 40, 100}
+    // };
+    // for (const InputArgs &args: testArgs) {
         try {
-            // InputArgs args = parseArgs(argc, argv);
+            InputArgs args = parseArgs(argc, argv);
 
             ImageConverter imageConverter;
             imageConverter.load(SOURCE_FOLDER_PATH + args.sourceFile);
@@ -87,5 +88,5 @@ int main(int argc, char **argv) {
             system("pause");
             exit(1);
         }
-    }
+    // }
 }

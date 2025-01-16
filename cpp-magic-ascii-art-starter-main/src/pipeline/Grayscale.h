@@ -15,7 +15,7 @@ private:
     inline static double WEIGHT_BLUE{0.11};
 
 public:
-    [[nodiscard]] PixelArray<double> convert(const PixelArray<Color> &array) const;
+    [[nodiscard]] static PixelArray<double> convert(const PixelArray<Color> &array) ;
 private:
     static double convertToGrayValue(Color color);
 };

@@ -7,14 +7,10 @@
 
 template<typename T>
 class PixelArray {
-public:
-
-
-
-//Colour class/struct wiht fields: green, blue, red -->
 private:
     int height;
     int width;
+
     T *data{};
 
 public:
@@ -35,11 +31,11 @@ public:
         return *this;
     }
 
-    int getHeight() const {
+    [[nodiscard]] int getHeight() const {
         return height;
     }
 
-    int getWidth() const {
+    [[nodiscard]] int getWidth() const {
         return width;
     }
 
