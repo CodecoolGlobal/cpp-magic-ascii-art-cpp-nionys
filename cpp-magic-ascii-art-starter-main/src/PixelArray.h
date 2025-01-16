@@ -7,6 +7,11 @@
 
 template<typename T>
 class PixelArray {
+public:
+
+
+
+//Colour class/struct wiht fields: green, blue, red -->
 private:
     int height;
     int width;
