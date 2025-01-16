@@ -4,53 +4,81 @@
 
 #include <fstream>
 #include <iostream>
+#include <string>
+#include <utility>
 
-#include "Grayscale.h"
-#include "PixelArray.h"
+#include "pipeline/ImageConverter.h"
+#include "util/fileUtil.h"
+#include "util/parseUtil.h"
+
+#define DEFAULT_RESOLUTION (-1)
+#define SOURCE_FOLDER_PATH "../pics/"
 #include "./ImageReader/BmpImageReader/BmpImageReader.h"
 #include "./ImageReader/PngImageReader/PngImageReader.h"
+#include "PixelArray.h"
 
 using namespace std;
 
+struct InputArgs {
+    const string sourceFile, targetFile;
+    // use DEFAULT_RESOLUTION to keep source height
+    const int targetHeight, targetWidth;
+
+    // defined constructor to prevent incomplete initialization
+    InputArgs(string sourceFile, string targetFile, const int targetHeight, const int targetWidth) :
+        sourceFile(std::move(sourceFile)), targetFile(std::move(targetFile)), targetHeight(targetHeight),
+        targetWidth(targetWidth) {}
+};
+
+InputArgs parseArgs(const int argc, char **argv) {
+    if (!(argc & 1))
+        throw invalid_argument("unpaired argument");
+
+    string sourceFile, targetFile;
+    int targetHeight{DEFAULT_RESOLUTION}, targetWidth{DEFAULT_RESOLUTION};
+
+    for (int i = 1; i < argc - 1; i++) {
+        string key = argv[i];
+        string value = argv[++i];
+        if (key == "-img") {
+            sourceFile = value;
+        } else if (key == "-target") {
+            targetFile = value;
+        } else if (key == "-height") {
+            targetHeight = parseInt(value);
+        } else if (key == "-width") {
+            targetWidth = parseInt(value);
+        } else {
+            throw invalid_argument("unknown option");
+        }
+    }
+    return {sourceFile, targetFile, targetHeight, targetWidth};
+}
 
 int main(int argc, char **argv) {
-    cout << "Hello World!" << endl;
-    BmpImageReader bmpImageReader;
-    PngImageReader pngImageReader;
+    InputArgs testArgs[] = {{"test1.jpg", "jpg_1.txt", -1, -1},
+                            {"test2.jpg", "jpg_2.txt", -1, -1},
+                            {"test1.bmp", "bmp_1.txt", -1, -1},
+                            {"test2.bmp", "bmp_2.txt", -1, -1},
+                            {"test1.png", "png_1.txt", -1, -1},
+                            {"test2.png", "png_2.txt", -1, -1}
 
-    Grayscale gs{"@#8&o:*. "};
-    PixelArray bmpArray = bmpImageReader.readImage("../pics/test2.bmp");
-    PixelArray pngArray = pngImageReader.readImage("../pics/test2.png");
+    };
+    for (const InputArgs &args: testArgs) {
+        try {
+            // InputArgs args = parseArgs(argc, argv);
 
-    PixelArray grayBmpArray = gs.convert(bmpArray);
-    PixelArray grayPngArray = gs.convert(pngArray);
+            ImageConverter imageConverter;
+            imageConverter.load(SOURCE_FOLDER_PATH + args.sourceFile);
+            const string asciiArt = (args.targetHeight != DEFAULT_RESOLUTION && args.targetWidth != DEFAULT_RESOLUTION)
+                                            ? imageConverter.convert(args.targetHeight, args.targetWidth)
+                                            : imageConverter.convert();
 
-    ofstream outFileBmp("bmp.txt");
-    if (!outFileBmp.is_open()) {
-        throw runtime_error("Error opening file");
-    }
-    for (int r = 0; r < grayBmpArray.height; r++) {
-        // if (r>12) break;
-        for (int c = 0; c < grayBmpArray.width; c++) {
-            // if (c>12) break;
-            outFileBmp << grayBmpArray.getCell(r, c, 0);
+            writeToFile(args.targetFile, asciiArt);
+        } catch (const exception &e) {
+            cerr << "ERROR: " << e.what() << endl;
+            system("pause");
+            exit(1);
         }
-        outFileBmp << endl;
     }
-    outFileBmp.close();
-
-    ofstream outFilePng("png.txt");
-    if (!outFilePng.is_open()) {
-        throw runtime_error("Error opening file");
-    }
-    for (int r = 0; r < grayPngArray.height; r++) {
-        // if (r>12) break;
-        for (int c = 0; c < grayPngArray.width; c++) {
-            // if (c>12) break;
-            outFilePng << grayPngArray.getCell(r, c, 0);
-        }
-        outFilePng << endl;
-    }
-    outFilePng.close();
-
 }

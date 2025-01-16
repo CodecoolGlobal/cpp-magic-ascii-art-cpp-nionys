@@ -5,35 +5,52 @@
 #ifndef PIXELARRAY_H
 #define PIXELARRAY_H
 
-
+template<typename T>
 class PixelArray {
 public:
-    const int height;
-    const int width;
-    const int depth;
+
 
 
 //Colour class/struct wiht fields: green, blue, red -->
 private:
-    unsigned char* data{};
+    int height;
+    int width;
+    T *data{};
 
 public:
-    PixelArray(const int height, const int width, const int depth) : height(height), width(width), depth(depth),
-                                                                     data(new unsigned char[height * width * depth]) {
+    PixelArray(const int height, const int width) : height(height), width(width),
+                                                    data(new T[height * width]) {
     };
 
     ~PixelArray() {
         delete[] data;
     }
 
+    PixelArray<T>& operator= (PixelArray<T> other) {
+        height = other.height;
+        width = other.width;
+        delete[] data;
+        data = new T[height * width];
+        memcpy(data, other.data, height * width * sizeof(T));
+        return *this;
+    }
+
+    int getHeight() const {
+        return height;
+    }
+
+    int getWidth() const {
+        return width;
+    }
+
     // ReSharper disable once CppMemberFunctionMayBeConst
-    void setCell(const int &row, const int &column, const int &layer, const unsigned char &value) {
-        int idx = depth * width * row + depth * column + layer;
+    void setCell(const int &row, const int &column, const T &value) {
+        int idx = width * row + column;
         data[idx] = value;
     }
 
-    [[nodiscard]] unsigned char getCell(const int &row, const int &column, const int &layer) const {
-        int idx = depth * width * row + depth * column + layer;
+    [[nodiscard]] T getCell(const int &row, const int &column) const {
+        int idx = width * row + column;
         return data[idx];
     }
 };

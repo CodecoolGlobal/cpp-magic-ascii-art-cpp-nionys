@@ -6,13 +6,14 @@
 #define PNGIMAGEREADER_H
 #include <string>
 
-#include "../ImageReader.h"
+#include "../IImageReader.h"
 #include "../../PixelArray.h"
 
-class PngImageReader : public ImageReader {
+class PngImageReader : public IImageReader {
     public:
 public:
-    PixelArray readImage(const std::string &filePath) override;
+    PixelArray <Color> readImage(const std::string &filePath) override;
+
 };
 
 
