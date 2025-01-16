@@ -54,21 +54,28 @@ InputArgs parseArgs(const int argc, char **argv) {
 }
 
 int main(int argc, char **argv) {
-    try {
-        // InputArgs args = parseArgs(argc, argv);
-        InputArgs args = {"test1.jpg", "asd_jpg.txt", -1, -1};
-        // InputArgs args = {"test1.bmp", "asd_bmp.txt", -1, -1};
+    InputArgs testArgs[] = {
+    {"test1.jpg", "jpg_1.txt", -1, -1},
+    {"test2.jpg", "jpg_2.txt", -1, -1},
+    {"test1.bmp", "bmp_1.txt", -1, -1},
+    {"test2.bmp", "bmp_2.txt", -1, -1}
+    };
+    for (const InputArgs& args : testArgs) {
+        try {
+            // InputArgs args = parseArgs(argc, argv);
 
-        ImageConverter imageConverter;
-        imageConverter.load(SOURCE_FOLDER_PATH + args.sourceFile);
-        const string asciiArt = (args.targetHeight != DEFAULT_RESOLUTION && args.targetWidth != DEFAULT_RESOLUTION) ?
-            imageConverter.convert(args.targetHeight, args.targetWidth) :
-            imageConverter.convert();
+            ImageConverter imageConverter;
+            imageConverter.load(SOURCE_FOLDER_PATH + args.sourceFile);
+            const string asciiArt = (args.targetHeight != DEFAULT_RESOLUTION && args.targetWidth != DEFAULT_RESOLUTION) ?
+                imageConverter.convert(args.targetHeight, args.targetWidth) :
+                imageConverter.convert();
 
-        writeToFile(args.targetFile, asciiArt);
-    } catch (const exception &e) {
-        cerr << "ERROR: " << e.what() << endl;
-        system("pause");
-        exit(1);
+            writeToFile(args.targetFile, asciiArt);
+        } catch (const exception &e) {
+            cerr << "ERROR: " << e.what() << endl;
+            system("pause");
+            exit(1);
+        }
+
     }
 }

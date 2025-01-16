@@ -18,21 +18,29 @@ std::string ImageConverter::convert() {
     return convert(rgbArray.getHeight(), rgbArray.getWidth());
 }
 
-void ImageConverter::load(std::string imagePath) {
+void ImageConverter::changeImageReaderToMatchFile(std::string fileName) {
+    size_t extension_index = fileName.find_last_of('.');
+    if (extension_index == std::string::npos) {
+        throw std::runtime_error("missing file extension");
+    }
+    const std::string fileExtension = fileName.substr(extension_index + 1);
+    delete imageReader;
+
+    if (fileExtension == "bmp") {
+        imageReader = new BmpImageReader();
+    } else if (fileExtension == "jpg") {
+        imageReader = new JpegReader();
+    } /*else if (fileExtension == "png") {
+        imageReader = new PngImageReader();
+    }*/ else {
+        throw std::runtime_error("Unsupported file format: " + fileExtension);
+    }
+
+}
+
+void ImageConverter::load(const std::string& imagePath) {
     try {
-        std::string fileExtension = imagePath.substr(imagePath.find_last_of(".") + 1);
-        IImageReader* imageReader = nullptr;
-
-        if (fileExtension == "bmp") {
-            imageReader = new BmpImageReader();
-        } else if (fileExtension == "jpg") {
-            imageReader = new JpegReader();
-        } /*else if (fileExtension == "png") {
-            imageReader = new PngImageReader();
-        }*/ else {
-            throw std::runtime_error("Unsupported file format: " + fileExtension);
-        }
-
+        changeImageReaderToMatchFile(imagePath);
         rgbArray = imageReader->readImage(imagePath);
         isLoaded = true;
 

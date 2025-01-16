@@ -21,8 +21,10 @@ private:
 
     PixelArray<Color> rgbArray{0, 0};
 public:
-    void load(std::string imagePath);
+    void load(const std::string &imagePath);
     std::string convert(int height, int width);
     std::string convert();
+private:
+    void changeImageReaderToMatchFile(std::string fileName);
 };
 #endif //IMAGECONVERTER_H
