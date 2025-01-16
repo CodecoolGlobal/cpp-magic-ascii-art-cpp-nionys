@@ -55,10 +55,12 @@ InputArgs parseArgs(const int argc, char **argv) {
 
 int main(int argc, char **argv) {
     InputArgs testArgs[] = {
-    {"test1.jpg", "jpg_1.txt", -1, -1},
-    {"test2.jpg", "jpg_2.txt", -1, -1},
-    {"test1.bmp", "bmp_1.txt", -1, -1},
-    {"test2.bmp", "bmp_2.txt", -1, -1}
+    {"test1.jpg", "jpg_1.txt", DEFAULT_RESOLUTION, DEFAULT_RESOLUTION},
+    {"test2.jpg", "jpg_2.txt", DEFAULT_RESOLUTION, DEFAULT_RESOLUTION},
+    {"test1.bmp", "bmp_1.txt", DEFAULT_RESOLUTION, DEFAULT_RESOLUTION},
+    {"test2.bmp", "bmp_2.txt", DEFAULT_RESOLUTION, DEFAULT_RESOLUTION},
+    {"test1.bmp", "bmp_1_40x40.txt", 40, 40},
+    {"test2.bmp", "bmp_2_80x80.txt", 80, 80},
     };
     for (const InputArgs& args : testArgs) {
         try {

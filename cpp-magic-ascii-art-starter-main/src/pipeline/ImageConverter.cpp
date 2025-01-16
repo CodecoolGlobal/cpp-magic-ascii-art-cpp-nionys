@@ -15,7 +15,10 @@ std::string ImageConverter::convert(const int height, const int width) {
 }
 
 std::string ImageConverter::convert() {
-    return convert(rgbArray.getHeight(), rgbArray.getWidth());
+    if (!isLoaded) throw std::runtime_error("state exception");
+    const PixelArray<double> grayArray = grayscale.convert(rgbArray);
+    std::string asciiArt = asciiArtifier.asciiArtify(grayArray);
+    return asciiArt;
 }
 
 void ImageConverter::changeImageReaderToMatchFile(std::string fileName) {
