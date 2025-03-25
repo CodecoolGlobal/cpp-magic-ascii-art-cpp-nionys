@@ -19,10 +19,7 @@ using namespace std;
 
 struct InputArgs {
     const string sourceFile, targetFile;
-    // use DEFAULT_RESOLUTION to keep source height
     const int targetHeight, targetWidth;
-
-    // defined constructor to prevent incomplete initialization
 
     InputArgs(string sourceFile, string targetFile, const int targetHeight,
               const int targetWidth) : sourceFile(std::move(sourceFile)), targetFile(std::move(targetFile)),
@@ -61,17 +58,6 @@ int main(int argc, char **argv) {
     for (int i = 0; i < argc; i++) {
         std::cout<<argv[i]<<endl;
     }
-    // InputArgs testArgs[] = {
-    //     {"test1.jpg", "jpg_1.txt", -1, -1},
-    //     {"test2.jpg", "jpg_2.txt", -1, -1},
-    //     {"test1.bmp", "bmp_1.txt", -1, -1},
-    //     {"test2.bmp", "bmp_2.txt", -1, -1},
-    //     {"test1.png", "png_1.txt", -1, -1},
-    //     {"test2.png", "png_2.txt", -1, -1},
-    //     {"test1.bmp", "bmp_1_40x40.txt", 40, 40},
-    //     {"test2.bmp", "bmp_2_40x100.txt", 40, 100}
-    // };
-    // for (const InputArgs &args: testArgs) {
         try {
             InputArgs args = parseArgs(argc, argv);
 
@@ -88,5 +74,4 @@ int main(int argc, char **argv) {
             system("pause");
             exit(1);
         }
-    // }
 }
