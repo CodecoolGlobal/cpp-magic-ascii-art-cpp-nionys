@@ -15,7 +15,7 @@ add_executable(cpp_magic_ascii_art_cpp_nionys
         cpp-magic-ascii-art-starter-main/src/external/lodepng/lodepng.cpp
         cpp-magic-ascii-art-starter-main/src/external/lodepng/lodepng.h
         cpp-magic-ascii-art-starter-main/src/external/EasyBMP_1.06/EasyBMP_VariousBMPutilities.h
-        cpp-magic-ascii-art-starter-main/src/external/JpegDecoder/jpegDecoder.h
+        cpp-magic-ascii-art-starter-main/src/external/JpegDecoder/JpegDecoder.h
         cpp-magic-ascii-art-starter-main/src/ImageReader/IImageReader.h
         cpp-magic-ascii-art-starter-main/src/ImageReader/IImageReader.h
         cpp-magic-ascii-art-starter-main/src/ImageReader/BmpImageReader/BmpImageReader.cpp
@@ -26,8 +26,8 @@ add_executable(cpp_magic_ascii_art_cpp_nionys
         cpp-magic-ascii-art-starter-main/src/pipeline/Grayscale.cpp
         cpp-magic-ascii-art-starter-main/src/pipeline/AsciiArtifier.h
         cpp-magic-ascii-art-starter-main/src/pipeline/AsciiArtifier.cpp
-        cpp-magic-ascii-art-starter-main/src/pipeline/imageConverter.cpp
-        cpp-magic-ascii-art-starter-main/src/pipeline/imageConverter.h
+        cpp-magic-ascii-art-starter-main/src/pipeline/ImageConverter.cpp
+        cpp-magic-ascii-art-starter-main/src/pipeline/ImageConverter.h
         cpp-magic-ascii-art-starter-main/src/util/fileUtil.h
         cpp-magic-ascii-art-starter-main/src/util/parseUtil.h
         cpp-magic-ascii-art-starter-main/src/ImageReader/PngImageReader/PngImageReader.cpp

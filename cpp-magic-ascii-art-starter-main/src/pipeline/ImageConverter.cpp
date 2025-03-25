@@ -2,7 +2,9 @@
 // Created by User on 2025. 01. 15..
 //
 
-#include "imageConverter.h"
+#include "ImageConverter.h"
+
+
 #include "ImageReader/BmpImageReader/BmpImageReader.h"
 #include "ImageReader/IImageReader.h"
 #include "ImageReader/JpegReader/JpegReader.h"

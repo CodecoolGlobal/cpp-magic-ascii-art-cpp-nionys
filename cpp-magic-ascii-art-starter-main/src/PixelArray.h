@@ -5,6 +5,8 @@
 #ifndef PIXELARRAY_H
 #define PIXELARRAY_H
 
+#include <cstring>
+
 template<typename T>
 class PixelArray {
 private:
